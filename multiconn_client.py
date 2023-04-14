@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 
+'''
+    source: https://realpython.com/python-sockets/#multi-connection-client-and-server 
+    in terminal, run: python multiconn_client.py 127.0.0.1 65432 3
+        arguments: addr, port #, number of connections
+'''
+
 import sys
 import socket
 import selectors

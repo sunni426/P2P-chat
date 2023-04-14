@@ -9,6 +9,9 @@ import socket
     think of each chat as an independent network
 '''
 
+# super simple server
+
+
 # create a socket object
 # s1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # SOCK_STREAM type: default protocol is TCP
 
@@ -27,3 +30,21 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             if not data:
                 break
             conn.sendall(data)
+
+
+'''
+    super simple client
+'''
+
+
+import socket
+
+HOST = "127.0.0.1"  # The server's hostname or IP address
+PORT = 65432  # The port used by the server
+
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    s.connect((HOST, PORT))
+    s.sendall(b"Hello, world")
+    data = s.recv(1024) # read server's reply. bufsize 1024: the max amount of data to be received at once
+
+print(f"Received {data!r}")

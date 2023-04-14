@@ -4,7 +4,10 @@ import selectors
 import types
 
 '''
-handles multiple connections using a selector objects reated from selectors module
+    handles multiple connections using a selector objects reated from selectors module
+    source: https://realpython.com/python-sockets/#multi-connection-client-and-server 
+    run: python multiconn_server.py 127.0.0.1 65432
+        arguments: addr, port #
 '''
 
 sel = selectors.DefaultSelector()
@@ -58,9 +61,9 @@ try:
     while True:
         events = sel.select(timeout=None) # blocks until there are sockets ready for I/O
         for key, mask in events:
-            if key.data is None:
+            if key.data is None: # so is from listening socket, accept connection
                 accept_wrapper(key.fileobj)
-            else:
+            else: # it’s a client socket that’s already been accepted, and you need to service it
                 service_connection(key, mask)
 except KeyboardInterrupt:
     print("Caught keyboard interrupt, exiting")
