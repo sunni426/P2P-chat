@@ -25,6 +25,12 @@ username = my_username.encode('utf-8')
 username_header = f"{len(username):<{HEADER_LENGTH}}".encode('utf-8')
 client_socket.send(username_header + username)
 
+# next, find target
+target_user = input(f"SendTo: ")
+targetuser = target_user.encode('utf-8')
+targetuser_header = f"{len(targetuser):<{HEADER_LENGTH}}".encode('utf-8')
+client_socket.send(targetuser_header + targetuser)
+
 # now, event loop. pending, idle chat status. to send & receive messages
 while True:
     message = input(f"{my_username} > ")
