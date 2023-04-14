@@ -48,11 +48,17 @@ while True:
             user = receive_message(client_socket) # get header data
             if user is False: # if this particular user disconnnected
                 continue
-
+            
             sockets_list.append(client_socket)
 
             clients[client_socket] = user
             print(f"Accepted new connection from {client_address[0]}: {client_address[1]} username: {user['data'].decode('utf-8')}")
+
+            # get target username
+            target_user = receive_message(client_socket)
+            if target_user is False: # if this particular user disconnnected
+                continue
+            target = target_user['data'].decode('utf-8')
         
         else:
             message = receive_message(notified_socket)
@@ -66,10 +72,11 @@ while True:
             user = clients[notified_socket]
             print(f"Received message from {user['data'].decode('utf-8')}: {message['data'].decode('utf-8')}")
 
-            # fix this here. rn, message to everyone. restrict to share with only target "connnected" chat targert (server)
+            # not working here, restrict to share with only target "connnected" chat targert (server). may need to cache here, in DB
             for client_socket in clients:
                 if client_socket != notified_socket:
-                    client_socket.send(user['header'] + user['data'] + message['header'] + message['data'])
+                    if user['data'] == target: # added, not sure if will work
+                        client_socket.send(user['header'] + user['data'] + message['header'] + message['data'])
     
     for notified_socket in exception_sockets:
         sockets_list.remove(notified_socket)

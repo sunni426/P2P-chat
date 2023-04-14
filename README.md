@@ -2,7 +2,7 @@
 
 ## Functionality
 1) discovery_server.py: maintains list of sockets, currrently echoes all messages sent/received among all client users
-2) client.py: init
+2) client.py: init users and establishes connection; user is added into discovery_server socket_list
 
 ## Limitations
 - currently only supports 2 users with hardcoded IP addresses & port numbers

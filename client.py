@@ -5,7 +5,6 @@ import types
 import select # for OS-level I/O capabilities
 import errno
 
-
 '''
     every user will "enter chat" by running this to establish a connection with another user.
     status will be updated in discovery_server [TO BE IMPLEMENTED BY SAM]
