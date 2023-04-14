@@ -58,7 +58,7 @@ while True:
             target_user = receive_message(client_socket)
             if target_user is False: # if this particular user disconnnected
                 continue
-            target = target_user['data'].decode('utf-8')
+            target = target_user['data']#.decode('utf-8')
         
         else:
             message = receive_message(notified_socket)
