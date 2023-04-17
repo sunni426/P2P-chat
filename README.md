@@ -24,10 +24,10 @@ This is the python code that our Receiver.py and Sender.py use to interact with 
 1. clone this repository
 2. Go into the p2p-chat folder from terminal: cd p2p-chat
 
-# Fist, start up the discover server by running the following commands:
+# Fist: start up the discover server by running the following commands:
   1. uvicorn discover_api:app --reload
 
-# Create first user 'Sam' by running the following command 
+# Second: create first user 'Sam' by running the following command 
 ## Open a new terminal
 ## Commands
 1. python3 Receiver.py
@@ -39,7 +39,7 @@ It will say "You don't exists in the database. Now we are creating a new account
 7. Enter '4444' or a port number you like when prompted "Enter your port:"
 8. Now you are online, and you can be connected by other users.
 
-# Create second user 'Carol' by running the following command
+# Third: create second user 'Carol' by running the following command
 ## Open a new terminal
 ## Commands:
 1. python3 Receiver.py
@@ -52,7 +52,7 @@ It will say "You don't exists in the database. Now we are creating a new account
 8. Now you are online, and you can be connected by other users.
 
 
-# Create a window for Sam to talk to Carol by running the following command:
+# Fourth: create a window for Sam to talk to Carol by running the following command:
 ## Open a new terminal
 ## Commands
 1. python3 Sender.py
@@ -68,7 +68,7 @@ users: <br/>
 7. Now your sender window is connected to Carol, and Carol's Receiver window will display "Sam just connected to you!"
 8. You can enter any thing press enter key to send messages
 
-# Create a window for Carol to talk to Sam by running the following command:
+# Fifth: create a window for Carol to talk to Sam by running the following command:
 ## Open a new terminal
 ## Commands
 1. python3 Sender.py
@@ -91,7 +91,7 @@ Carol has the same things, one window runs Receiver.py, one runs Sender.py. The 
 Right now, Sam can type things in the window that runs his Sender.py and send them, then the message will display in Carol's window that runs Receiver.py <br />
 Also, Carol can type things in the window that runs her Sender.py and send them, then the message will display in Sam's window that runs Receiver.py <br />
 
-# To test offline message sending
+# Sixth: test offline message sending
 ## Step 1
 1. press 'control c' in Carol's Receiver window, to use KeyboardInterrupt to stop Carol's programs, to simulate she's offline. Don't close Carol's Receiver window
 2. In Sam's sender window, if you type something, it will display: <br />
