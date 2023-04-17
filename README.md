@@ -3,12 +3,17 @@
 ### Link: https://drive.google.com/file/d/1LZ_ODt23Hg8_MYUfkt_df-6CL_sNSe3x/view?usp=share_link 
 
 # File explanation:
-### Receiver.py: The code that allow other users to connect to receive messages sent from those connected users
-### Sender.py: The code that allow a user connect to a specific user, and then send messages to that user. 
-So a user will need 2 windows, one runs Receiver.py, to receive messages from other users, and one runs Sender.py, to send message to the a user this user connects to
-### sqlite3_database.py: A module that creates a local database and store messages. Sender.py use this module to insert sent and unsent message. The database is to store all the message a current user wants to send, and for the messages current user wants to send to a target user that is offline, they will be stored in the local database first. When the target user is online, and the current user is online, current user will automatically send those message to that target user before sending any message.
-### discover_api.py: This is the discover module that has all the endpoints to manage the users. This is a FastAPI that we wrote.
-### discovery.py: This is the python code that our Receiver.py and Sender.py use to interact with the discover_api.py FastAPI. Because FastAPI is not like class and function, so we create the discovery.py to have a class, so we can use the python code to interact with the API
+### Receiver.py: 
+The code that allow other users to connect to receive messages sent from those connected users
+### Sender.py: 
+The code that allow a user connect to a specific user, and then send messages to that user. 
+#### So a user will need 2 windows, one runs Receiver.py, to receive messages from other users, and one runs Sender.py, to send message to the a user this user connects to
+### sqlite3_database.py: 
+A module that creates a local database and store messages. Sender.py use this module to insert sent and unsent message. The database is to store all the message a current user wants to send, and for the messages current user wants to send to a target user that is offline, they will be stored in the local database first. When the target user is online, and the current user is online, current user will automatically send those message to that target user before sending any message.
+### discover_api.py: 
+This is the discover module that has all the endpoints to manage the users. This is a FastAPI that we wrote.
+### discovery.py: 
+This is the python code that our Receiver.py and Sender.py use to interact with the discover_api.py FastAPI. Because FastAPI is not like class and function, so we create the discovery.py to have a class, so we can use the python code to interact with the API
 
 # NOTE:
 ## The p2p chat currently only support local host chatting, i.e. host = 127.0.0.1
