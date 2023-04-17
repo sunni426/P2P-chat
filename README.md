@@ -10,7 +10,9 @@ So a user will need 2 windows, one runs Receiver.py, to receive messages from ot
 ### discover_api.py: This is the discover module that has all the endpoints to manage the users. This is a FastAPI that we wrote.
 ### discovery.py: This is the python code that our Receiver.py and Sender.py use to interact with the discover_api.py FastAPI. Because FastAPI is not like class and function, so we create the discovery.py to have a class, so we can use the python code to interact with the API
 
-# The p2p chat currently only support local host chatting, i.e. host = 127.0.0.1
+# NOTE:
+## The p2p chat currently only support local host chatting, i.e. host = 127.0.0.1
+## For communication, 2 users connect to each other by connecting them with their host and port, a middle server is not used. During the demo, when I enter message, the discover server's API is called. This is because I am calling to the discover server to check if the any of them is still online. It is not used as a messenger to pass messages between 2 users.
 
 # Instruction
 # To start:
