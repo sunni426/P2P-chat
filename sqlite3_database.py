@@ -68,9 +68,20 @@ def get_unsent_messages(receiver: str):
     return result
 
 
+def delete_sent_message(timestamp: str, sender: str, receiver: str, message: str):
+    conn, cursor = connect()
+    query = "DELETE FROM CHATS WHERE DATE_TIME = ? AND SENDER = ? AND RECEIVER = ? AND MESSAGE_CONTENT = ? AND MESSAGE_SENT = 0;"
+    val = (timestamp, sender, receiver, message,)
+    cursor.execute(query, val)
+    conn.commit()
+
+    logging.info("Message: %s, %s, %s, deleted successfully", timestamp, sender, receiver)
+
+
 create_table()
 # insert_message_send("sarah", "sunni", "hello!", True)
 # insert_message_send("sarah", "sam", "hi!", False)
+# insert_message_send("sarah", "sam", "hello!", False)
 # insert_message_received("sunni", "sarah", "Hi Sarah!")
 # print(get_chat_messages("sunni"))
 # print()
@@ -78,4 +89,9 @@ create_table()
 # print()
 # print(get_unsent_messages("sunni"))
 # print()
+# unsent_msgs = get_unsent_messages("sam")
+# print(unsent_msgs)
+# for msg in unsent_msgs:
+#     delete_sent_message(msg[0], msg[1], msg[2], msg[3])
+
 # print(get_unsent_messages("sam"))

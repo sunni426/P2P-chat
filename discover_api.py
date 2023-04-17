@@ -30,6 +30,10 @@ class UpdateIpAndPortItem(BaseModel):
     port: int
 
 
+class CheckUserExistsItem(BaseModel):
+    username: str
+
+
 def connectToDatabase():
     conn = sqlite3.connect(database_str)
     return conn
@@ -55,6 +59,7 @@ def createTable():
 # Insert data
 @app.post("/discover/insert_user/")
 def insertUser(item: InsertUserItem):
+    createTable()
     try:
         conn = connectToDatabase()
         username = item.username
@@ -80,6 +85,7 @@ def insertUser(item: InsertUserItem):
 # Query data
 def getAllUsers():
     try:
+        createTable()
         conn = connectToDatabase()
         dic = {}
         cursor = conn.execute("SELECT * from users")
@@ -95,10 +101,43 @@ def getAllUsers():
         return {"message": str(e)}
 
 
+@app.get("/discover/check_user_exists/{username}")
+def checkUserExists(username):
+    try:
+        createTable()
+        conn = connectToDatabase()
+        cursor = conn.execute("SELECT * FROM users WHERE username = ?", (username,))
+        row = cursor.fetchone()
+        if row:
+            return {"message": "exists"}
+        else:
+            return {"message": "not exists"}
+    except Exception as e:
+        return {"message": str(e)}
+
+@app.get("/discover/check_status/{username}")
+def checkUserStatus(username):
+    try:
+        createTable()
+        conn = connectToDatabase()
+        cursor = conn.execute("SELECT * FROM users WHERE username = ?", (username,))
+        row = cursor.fetchone()
+        if row:
+            print(row)
+            return {"message": row[1]}
+        else:
+            print("username not exists")
+            return {"message": "user not exists"}
+    except Exception as e:
+        return {"message": str(e)}
+
+
+
 @app.post("/discover/set_offline_status/")
 # Update data
 def setOfflineStatus(item: SetOfflineStatusItem):
     try:
+        createTable()
         username = item.username
         conn = connectToDatabase()
         conn.execute("UPDATE users SET status = ? WHERE username = ?", ("offline", username))
@@ -112,6 +151,7 @@ def setOfflineStatus(item: SetOfflineStatusItem):
 @app.post("/discover/update_ip_and_port/")
 def updateIpAndPort(item: UpdateIpAndPortItem):
     try:
+        createTable()
         conn = connectToDatabase()
         username = item.username
         ip_address = item.ip_address
@@ -129,6 +169,7 @@ def updateIpAndPort(item: UpdateIpAndPortItem):
 @app.post("/discover/delete_user/")
 def deleteUser(item: DeleteItem):
     try:
+        createTable()
         conn = connectToDatabase()
         username = item.username
         conn.execute("DELETE FROM users WHERE username = ?", (username,))
