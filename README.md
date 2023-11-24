@@ -1,3 +1,4 @@
+# A peer-to-peer chat utilizing Sqlite databases for offline, asynchronous message communication
 # Demo:
 ### You can follow the step from the demo to implement the p2p chat or read the step starting from the 'Instruction' below <br />
 ### Link: https://drive.google.com/file/d/1LZ_ODt23Hg8_MYUfkt_df-6CL_sNSe3x/view?usp=share_link 
